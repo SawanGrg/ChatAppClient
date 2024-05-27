@@ -36,41 +36,15 @@ export default function Login() {
 
       console.log("success", response);
       console.log("1");
-      console.log("response", response.username, response.token, response.roleName);
-      if (response.status === 'UNAUTHORIZED') {
-        // Display an error toast for unauthorized access
-        toast.error('Please check your credentials.');
-        return;
-      }
-
-      if (response.token == "vendor is not verified") {
-        toast.error('Vendor is not verified');
-        return;
-      }
-
-      if (response.token == "user is not verified") {
-        toast.error('User is not verified');
-        return;
-      }
+      console.log("response", response.result.username, response.result.token,  response.result.userId);
       
-      if (!response.username) {
-        toast.error('Invalid Credentials');
-        return;
-      }
       console.log("2");
 
-      if (response.username) {
+      if (response.status == 200) {
 
-        dispatch(setUserDetails({ token: response.token, userName: response.username, userId: response.roleName }));
-
-        // Redirecting based on the role
-        if (response.roleName === "ROLE_VENDOR") {
-          navigate('/vendor');
-        } else if (response.roleName === "ROLE_USER") {
-          navigate("/");
-        } else {
-          navigate('/admin/home');
-        }
+        dispatch(setUserDetails({ token: response.result.token, userName: response.result.username, userId: response.result.userId }));
+        navigate("/");
+        
 
       }
     } catch (error) {

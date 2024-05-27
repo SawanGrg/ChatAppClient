@@ -1,0 +1,6 @@
+.parent-div{
+    display: grid;
+    grid-template-columns: 1.5fr 6fr;
+    height: 100vh;
+    width: 100vw;
+}
