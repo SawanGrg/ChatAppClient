@@ -6,6 +6,8 @@ import './Home.css';
 function Home() {
     const [users, setUsers] = useState([]);
 
+    const userName = localStorage.getItem('userName').replace(/"/g, '');
+
     const getAllUsers = async () => {
         try {
             const response = await getAllUser();
@@ -24,7 +26,8 @@ function Home() {
     return (
         <div className='parent-div'>
             <div>
-                <h2>User List</h2>
+                <h2>Friend List of {userName}</h2>
+
                 <ul>
                     {users.map((user, index) => (
                         <li key={index}>
@@ -33,7 +36,7 @@ function Home() {
                                 <br />
                                 {user.username}
                             </div>
-                            <Link to={`/privateChat/${user.token}`}>Chat with {user.username}</Link>
+                            <Link to={`/privateChat/${user.token}/${user.username}`}>Chat with {user.username}</Link>
                         </li>
                     ))}
                 </ul>

@@ -16,7 +16,7 @@ export const userRoutes = [
         isPrivate: false,
     },
     {
-        path: "/privateChat/:receiverId",
+        path: "/privateChat/:receiverId/:receiverName",
         Element: PrivateChat,
         hasLayout: true,
         isPrivate: false,
